@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/relative"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/program_color">
+
+
+    <ImageView
+        android:id="@+id/appIcon"
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/programicon"
+        android:contentDescription="Weather App Icon"/>
+
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appIcon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-35dp"
+        android:text="WELCOME"
+        android:textColor="@android:color/white"
+        android:textSize="58sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-condensed-medium"/>
+
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcomeText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Your daily weather companion — check current conditions, temperature, humidity and forecasts in a modern and beautiful interface."
+        android:textColor="#B8B8B8"
+        android:textSize="16sp"
+        android:lineSpacingExtra="5dp"
+        android:fontFamily="sans-serif-medium"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:padding="28dp"
+        android:background="@drawable/bottom_card">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Real-time Weather"
+            android:textColor="@android:color/white"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Track weather conditions around the world with smooth experience and elegant design."
+            android:textColor="#CFCFCF"
+            android:textSize="15sp"
+            android:lineSpacingExtra="4dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/welcomeBtn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:text="GET STARTED"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            app:cornerRadius="30dp"
+            android:backgroundTint="#5C8DFF"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

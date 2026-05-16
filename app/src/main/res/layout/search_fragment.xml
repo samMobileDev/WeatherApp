@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@drawable/program_color">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search Weather"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="20dp"
+        tools:ignore="HardcodedText" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="12dp"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="3dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/cityInput"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Search city..."
+                android:background="@android:color/transparent"
+                android:paddingHorizontal="20dp"
+                android:textSize="16sp"
+                android:maxLines="1"
+                tools:ignore="HardcodedText" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/searchButton"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            app:backgroundTint="#4A6CFF"
+            app:cornerRadius="29dp"
+            app:icon="@mipmap/searchbtn"
+            app:iconSize="24dp"
+            app:iconTint="@android:color/white"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="28dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/CardView"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:visibility="gone"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="8dp"
+                android:backgroundTint="#5A8DFF">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="22dp">
+
+                    <TextView
+                        android:id="@+id/cityName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        tools:ignore="RelativeOverlap" />
+
+                    <TextView
+                        android:id="@+id/cityDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cityName"
+                        android:layout_marginTop="6dp"
+                        android:textColor="#EAF2FF"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/cityTemp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:textColor="@android:color/white"
+                        android:textSize="62sp"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/weatherIcon"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:src="@mipmap/house3d"
+                        tools:ignore="ContentDescription" />
+
+                    <ImageView
+                        android:id="@+id/icons"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_toStartOf="@id/weatherIcon"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="90dp"
+                        tools:ignore="ContentDescription" />
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewSearch"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:layout_marginTop="16dp"
+                android:padding="12dp"
+                android:clipToPadding="false"
+                android:scrollbars="horizontal"
+                android:fadeScrollbars="false"
+                android:overScrollMode="always"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textinput_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:text="nothing still found :("
+            android:fontFamily="monospace"
+            android:visibility="visible"
+            tools:ignore="HardcodedText" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_marginBottom="38dp"
+            android:indeterminateTint="@android:color/white" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addBtn"
+            android:layout_width="230dp"
+            android:layout_height="67dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="100dp"
+            android:text="Add City"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:cornerRadius="28dp"
+            app:backgroundTint="@color/selector"
+            app:icon="@drawable/home"
+            app:iconGravity="textEnd"
+            tools:ignore="HardcodedText"/>
+    </FrameLayout>
+
+</LinearLayout>
