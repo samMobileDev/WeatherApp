@@ -76,7 +76,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
                 binding.addBtn.alpha = 0f
 
                 binding.addBtn.animate()
-                    .alpha(2f)
+                    .alpha(1f)
                     .setDuration(800)
                     .start()
             }
