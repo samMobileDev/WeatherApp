@@ -14,12 +14,22 @@ import java.io.IOException
 import java.net.SocketTimeoutException
 import kotlin.math.roundToInt
 import java.net.UnknownHostException
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SearchFragment : Fragment(R.layout.search_fragment) {
 
     private var weatherData: WeatherData? = null
     private var _binding: SearchFragmentBinding? = null
     private val binding get() = _binding!!
+    private fun getCityTime(timezone: Int): String {
+        val utc = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+
+        utc.add(Calendar.SECOND, timezone)
+
+        val format = SimpleDateFormat("HH:mm", Locale.getDefault())
+        return format.format(utc.time)
+    }
 
     private lateinit var apiService: ApiService
 
@@ -102,6 +112,13 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
     private fun searchWeather(city: String) {
         lifecycleScope.launch {
             binding.progressBar.visibility = View.VISIBLE
+            binding.addBtn.apply {
+                isEnabled = true
+                text =  "ADD CITY"
+                setIconResource(R.drawable.home)
+
+            }
+
 
             val cleanCity = city.trim()
 
@@ -120,7 +137,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
                 binding.cityInput.error = "Too long city name"
                 return@launch
             }
-            if (cleanCity.contains(" ")) {
+            if (cleanCity.contains("  ")) {
                 binding.progressBar.visibility = View.GONE
                 binding.cityInput.error = "City name cannot contain spaces"
                 return@launch
@@ -139,6 +156,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
                 )
                 if (response.isSuccessful) {
                     binding.progressBar.visibility = View.GONE
+
                     val weather = response.body() ?: return@launch
                     weatherData = weather
 
@@ -194,6 +212,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
                 )
 
                 if (response.isSuccessful) {
+                    binding.cityTime.text = getCityTime(weatherData!!.timezone)
                     val forecast = response.body() ?: return@launch
 
                     val filtered = groupForecast(forecast.list)

@@ -27,6 +27,7 @@ class HomeFragment: Fragment(R.layout.home_fragment) {
 
         apiService = retrofit.create(ApiService::class.java)
     }
+
     private val binding get() = _binding!!
     private fun loadWeather() {
 
@@ -37,7 +38,7 @@ class HomeFragment: Fragment(R.layout.home_fragment) {
         apiService = retrofit.create(ApiService::class.java)
 
 
-         val city = requireContext().getSharedPreferences("WeatherPrefs", 0)
+        val city = requireContext().getSharedPreferences("WeatherPrefs", 0)
             .getString("city", "New York") ?: "New York"
 
 
@@ -192,30 +193,31 @@ class HomeFragment: Fragment(R.layout.home_fragment) {
                     }
                 }
 
-                } catch (e: Exception) {
-                    when(e){
-                        is java.net.UnknownHostException -> {
-                            val image = binding.imageWeather
-                            val parmas = image.layoutParams
-                            parmas.height = 800
-                            parmas.width = 800
-                            binding.imageWeather.layoutParams = parmas
+            } catch (e: Exception) {
+                when (e) {
+                    is java.net.UnknownHostException -> {
+                        val image = binding.imageWeather
+                        val parmas = image.layoutParams
+                        parmas.height = 500
+                        parmas.width = 500
+                        binding.imageWeather.layoutParams = parmas
 
-                            binding.city.text = "No internet connection"
-                            binding.Temp.text = ""
-                            binding.Description.text = ""
-                            binding.Humidity.text = ""
-                            binding.imageWeather.setImageResource(R.mipmap.nointernet)
-                            binding.recyclerViewHome.visibility = View.GONE
-                            binding.framelayout.visibility = View.GONE
+                        binding.city.text = "No internet connection"
+                        binding.Temp.text = ""
+                        binding.Description.text = ""
+                        binding.Humidity.text = ""
+                        binding.imageWeather.setImageResource(R.mipmap.nointernet)
+                        binding.recyclerViewHome.visibility = View.GONE
+                        binding.framelayout.visibility = View.GONE
 
-
-                        }
 
                     }
+
                 }
+            }
         }
     }
+
     private fun groupForecast(list: List<Forecast>): List<Forecast> {
 
         val result = mutableListOf<Forecast>()
@@ -233,83 +235,45 @@ class HomeFragment: Fragment(R.layout.home_fragment) {
 
         return result
     }
+
     private fun loadForecast() {
         val city = requireContext()
             .getSharedPreferences("WeatherPrefs", 0)
             .getString("city", "New York") ?: "New York"
         lifecycleScope.launch {
             try {
-            val getForcast = apiService.getForecast(
-                city = city,
-                apiKey = "2e672b2455dcf73be646a3b6408c2247"
-            )
-            if (getForcast.isSuccessful) {
-                val forecastData = getForcast.body()
-                if (forecastData != null) {
-                    val filteredList = groupForecast(forecastData.list)
-                    val adapter = SecondAdapter(filteredList)
-                    binding.recyclerViewHome.layoutManager = LinearLayoutManager(
-                        requireContext(),
-                        LinearLayoutManager.HORIZONTAL, false
-                    )
-                    binding.recyclerViewHome.adapter = adapter
-                }
-
-
-                }
-            }catch (e: Exception) {}
-
-            val snapHelper = LinearSnapHelper()
-            snapHelper.attachToRecyclerView(binding.recyclerViewHome)
-            binding.recyclerViewHome.addOnItemTouchListener(
-                object : RecyclerView.SimpleOnItemTouchListener() {
-
-                    override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-
-                        when (e.action) {
-                            MotionEvent.ACTION_DOWN -> {
-
-                                val child = rv.findChildViewUnder(e.x, e.y)
-
-                                child?.animate()
-                                    ?.scaleX(0.95f)
-                                    ?.scaleY(0.95f)
-                                    ?.setDuration(100)
-                                    ?.start()
-                            }
-
-                            MotionEvent.ACTION_UP,
-                            MotionEvent.ACTION_CANCEL -> {
-
-                                for (i in 0 until rv.childCount) {
-                                    rv.getChildAt(i).animate()
-                                        .scaleX(1f)
-                                        .scaleY(1f)
-                                        .setDuration(200)
-                                        .start()
-                                }
-                            }
-                        }
-
-                        return false
+                val getForcast = apiService.getForecast(
+                    city = city,
+                    apiKey = "2e672b2455dcf73be646a3b6408c2247"
+                )
+                if (getForcast.isSuccessful) {
+                    val forecastData = getForcast.body()
+                    if (forecastData != null) {
+                        val filteredList = groupForecast(forecastData.list)
+                        val adapter = SecondAdapter(filteredList)
+                        binding.recyclerViewHome.layoutManager = LinearLayoutManager(
+                            requireContext(),
+                            LinearLayoutManager.HORIZONTAL, false
+                        )
+                        binding.recyclerViewHome.adapter = adapter
                     }
+
+
                 }
-            )
-
-
+            } catch (e: Exception) {
+            }
         }
     }
 
 
+            override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+                super.onViewCreated(view, savedInstanceState)
+                _binding = HomeFragmentBinding.bind(view)
+                loadWeather()
+                loadForecast()
+                initRetrofit()
+            }
 
+        }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        _binding = HomeFragmentBinding.bind(view)
-        loadWeather()
-        loadForecast()
-        initRetrofit()
-    }
-
-}
 

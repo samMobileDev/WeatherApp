@@ -3,7 +3,8 @@ package com.example.weatherapp
 data class WeatherData(
     var name: String,
     var main: Main,
-    var weather: List<Weather>
+    var weather: List<Weather>,
+    var timezone: Int
 )
 data class Main(
     var temp: Double,

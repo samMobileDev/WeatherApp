@@ -14,13 +14,37 @@ class WelcomeActivity : AppCompatActivity() {
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.relative.post {
-            binding.relative.alpha = 0f
-            binding.relative.animate()
+        binding.appIcon.post {
+            binding.appIcon.alpha = 0f
+            binding.appIcon.animate()
                 .alpha(1f)
-                .setDuration(1000)
+                .setDuration(1500)
                 .start()
         }
+        binding.welcomeText.post {
+            binding.welcomeText.alpha = 0f
+            binding.welcomeText.animate()
+                .alpha(1f)
+                .setDuration(1500)
+                .start()
+        }
+        binding.subtitle.post {
+            binding.subtitle.alpha = 0f
+            binding.subtitle.animate()
+                .alpha(1f)
+                .setDuration(1500)
+                .start()
+        }
+        binding.layout.post {
+            binding.layout.alpha = 0f
+            binding.layout.animate()
+                .alpha(1f)
+                .setDuration(1500)
+                .start()
+        }
+
+
+
 
         val sharedPreferences = getSharedPreferences("WeatherPrefs", MODE_PRIVATE)
 
@@ -38,7 +62,6 @@ class WelcomeActivity : AppCompatActivity() {
             sharedPreferences.edit()
                 .putBoolean("isFirstTime", true)
                 .apply()
-
             val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()

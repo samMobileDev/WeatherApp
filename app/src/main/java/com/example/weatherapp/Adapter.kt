@@ -2,7 +2,6 @@ package com.example.weatherapp
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.databinding.ItemBinding
 import com.example.weatherapp.databinding.SecondItemBinding
@@ -52,6 +51,7 @@ class Adapter(private val forecastList: List<Forecast>) : RecyclerView.Adapter<A
 }
 
 class SecondAdapter(private val forecastList: List<Forecast>) : RecyclerView.Adapter<SecondAdapter.ViewHolder>() {
+
     class ViewHolder(val binding: SecondItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -64,25 +64,28 @@ class SecondAdapter(private val forecastList: List<Forecast>) : RecyclerView.Ada
         holder.binding.dayTexts.text = getDayName(item.dt_txt)
         holder.binding.tempTexts.text = "${item.main.temp.toInt()}°"
 
-        when(item.weather[0].main){
+        when (item.weather[0].main) {
             "Clear" -> {
-                holder.binding.icon7days.setImageResource(R.mipmap.sun_icon_search) }
+                holder.binding.icon7days.setImageResource(R.mipmap.sun_icon_search)
+            }
+
             "Clouds" -> {
-                holder.binding.icon7days.setImageResource(R.mipmap.cloud_icon_search)}
+                holder.binding.icon7days.setImageResource(R.mipmap.cloud_icon_search)
+            }
+
             "Rain" -> {
-                holder.binding.icon7days.setImageResource(R.mipmap.rain_icon_search)}
+                holder.binding.icon7days.setImageResource(R.mipmap.rain_icon_search)
+            }
+
             "Snow" -> {
-                holder.binding.icon7days.setImageResource(R.mipmap.snow_icon_search)}
+                holder.binding.icon7days.setImageResource(R.mipmap.snow_icon_search)
+            }
+
             "Thunderstorm" -> {
-                holder.binding.icon7days.setImageResource(R.mipmap.thunder_icon_search)}
+                holder.binding.icon7days.setImageResource(R.mipmap.thunder_icon_search)
+            }
         }
-
-
-
-
-
     }
-
 
     override fun getItemCount(): Int = forecastList.size
 

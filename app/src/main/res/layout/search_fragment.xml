@@ -8,7 +8,6 @@
     android:padding="20dp"
     android:background="@drawable/program_color">
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,7 +23,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
@@ -69,9 +67,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
-
-
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/CardView"
                 android:layout_width="match_parent"
@@ -105,6 +100,15 @@
                         android:textSize="16sp"/>
 
                     <TextView
+                        android:id="@+id/cityTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cityDescription"
+                        android:layout_marginTop="6dp"
+                        android:textColor="#EAF2FF"
+                        android:textSize="14sp"/>
+
+                    <TextView
                         android:id="@+id/cityTemp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -131,6 +135,8 @@
                         android:layout_marginTop="90dp"
                         tools:ignore="ContentDescription" />
 
+
+
                 </RelativeLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -142,7 +148,10 @@
                 android:layout_weight="1"
                 android:visibility="gone"
                 android:layout_marginTop="16dp"
-                android:padding="12dp"
+                android:paddingTop="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="180dp"
                 android:clipToPadding="false"
                 android:scrollbars="horizontal"
                 android:fadeScrollbars="false"
@@ -171,7 +180,6 @@
             android:layout_marginBottom="38dp"
             android:indeterminateTint="@android:color/white" />
 
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/addBtn"
             android:layout_width="230dp"
@@ -188,5 +196,4 @@
             app:iconGravity="textEnd"
             tools:ignore="HardcodedText"/>
     </FrameLayout>
-
 </LinearLayout>
