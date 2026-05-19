@@ -135,11 +135,23 @@
                         android:layout_marginTop="90dp"
                         tools:ignore="ContentDescription" />
 
-
-
                 </RelativeLayout>
 
             </com.google.android.material.card.MaterialCardView>
+
+
+            <TextView
+                android:id="@+id/forecastTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7-day forecast"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="12dp"
+                android:visibility="gone"
+                tools:ignore="HardcodedText" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewSearch"
@@ -147,7 +159,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:visibility="gone"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:paddingTop="12dp"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"

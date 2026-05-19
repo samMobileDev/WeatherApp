@@ -56,6 +56,15 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
 
         binding.searchButton.setOnClickListener {
 
+            binding.forecastTitle.post {
+                binding.forecastTitle.alpha = 0f
+
+                binding.forecastTitle.animate()
+                    .alpha(1f)
+                    .setDuration(800)
+                    .start()
+            }
+
             binding.CardView.post {
                 binding.CardView.alpha = 0f
 
@@ -156,6 +165,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
                 )
                 if (response.isSuccessful) {
                     binding.progressBar.visibility = View.GONE
+                    binding.forecastTitle.visibility = View.VISIBLE
 
                     val weather = response.body() ?: return@launch
                     weatherData = weather
@@ -166,6 +176,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
                 } else {
                     binding.progressBar.visibility = View.GONE
                     binding.textinputError.text = "Something went wrong"
+                    binding.forecastTitle.visibility = View.GONE
 
                     when (response.code()) {
                         404 -> binding.cityInput.error = "City not found"
