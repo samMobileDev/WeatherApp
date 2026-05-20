@@ -121,6 +121,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
     private fun searchWeather(city: String) {
         lifecycleScope.launch {
             binding.progressBar.visibility = View.VISIBLE
+            binding.textinputError.visibility = View.GONE
             binding.addBtn.apply {
                 isEnabled = true
                 text =  "ADD CITY"
@@ -152,7 +153,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
                 return@launch
             }
             if (cleanCity.all { it.isDigit() }) {
-                binding.progressBar.visibility = View.GONE
+                binding.textinputError.visibility = View.GONE
                 binding.cityInput.error = "City name cannot be a number"
                 return@launch
             }
