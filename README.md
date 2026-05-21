@@ -27,7 +27,7 @@ A simple Android weather application built with Kotlin that provides real-time w
 
 ---
 
-##Screenshots
+Screenshots
 ![Home](weather.jpg)
 
 ## Preview
