@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:paddingTop="20dp"
     android:background="@drawable/program_color">
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,8 +19,6 @@
         android:textColor="@android:color/white"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="20dp" />
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,7 +39,7 @@
                 android:hint="Search city..."
                 android:background="@android:color/transparent"
                 android:paddingHorizontal="20dp"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.button.MaterialButton
@@ -55,128 +54,150 @@
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
-
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginTop="24dp">
 
-
-
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:fillViewport="true"
+            android:scrollbars="none">
 
-
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/CardView"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
-                android:visibility="gone"
-                app:cardCornerRadius="30dp"
-                android:backgroundTint="#5A8DFF">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="22dp">
-
-                    <TextView
-                        android:id="@+id/cityName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
-                        android:textSize="26sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:id="@+id/cityDescription"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/cityName"
-                        android:layout_marginTop="6dp"
-                        android:textColor="#EAF2FF"
-                        android:textSize="16sp"/>
-
-                    <TextView
-                        android:id="@+id/cityTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/cityDescription"
-                        android:layout_marginTop="6dp"
-                        android:textColor="#EAF2FF"
-                        android:textSize="14sp"/>
-
-                    <TextView
-                        android:id="@+id/cityTemp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:textColor="@android:color/white"
-                        android:textSize="48sp"
-                        android:textStyle="bold"/>
-
-                    <ImageView
-                        android:id="@+id/weatherIcon"
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
-                        android:src="@mipmap/house3d"/>
-
-                    <ImageView
-                        android:id="@+id/icons"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_toStartOf="@id/weatherIcon"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginTop="70dp"/>
-
-                </RelativeLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-
-
-            <TextView
-                android:id="@+id/forecastTitle"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="7-day forecast"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="12dp"
-                android:visibility="gone"/>
+                android:orientation="vertical">
 
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/CardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp"
+                    android:visibility="gone"
+                    app:cardCornerRadius="30dp"
+                    android:backgroundTint="#5A8DFF"
+                    tools:visibility="visible">
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="22dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewSearch"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:visibility="gone"
-                android:layout_marginTop="12dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="120dp"
-                android:clipToPadding="false"/>
+                        <TextView
+                            android:id="@+id/cityName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/white"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            tools:text="Tashkent" />
 
-        </LinearLayout>
+                        <TextView
+                            android:id="@+id/cityDescription"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/cityName"
+                            android:layout_marginTop="6dp"
+                            android:textColor="#EAF2FF"
+                            android:textSize="16sp"
+                            tools:text="overcast clouds" />
 
+                        <TextView
+                            android:id="@+id/cityTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/cityDescription"
+                            android:layout_marginTop="6dp"
+                            android:textColor="#EAF2FF"
+                            android:textSize="14sp"
+                            tools:text="13:49" />
 
+                        <TextView
+                            android:id="@+id/cityTemp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:textColor="@android:color/white"
+                            android:textSize="48sp"
+                            android:textStyle="bold"
+                            tools:text="24°" />
 
+                        <ImageView
+                            android:id="@+id/weatherIcon"
+                            android:layout_width="110dp"
+                            android:layout_height="110dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"
+                            android:src="@mipmap/house3d" />
+
+                        <ImageView
+                            android:id="@+id/icons"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_toStartOf="@id/weatherIcon"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginTop="70dp" />
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/forecastTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7-day forecast"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:nestedScrollingEnabled="false"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:minHeight="20dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/addBtn"
+                    android:layout_width="230dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="Add City"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:cornerRadius="28dp"
+                    app:backgroundTint="@color/selector"
+                    app:icon="@drawable/home"
+                    app:iconGravity="textEnd"
+                    tools:visibility="visible" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:focusable="false">
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -185,7 +206,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:visibility="gone"
-                android:indeterminateTint="@android:color/white"/>
+                android:indeterminateTint="@android:color/white" />
 
             <TextView
                 android:id="@+id/textinput_error"
@@ -198,23 +219,6 @@
                 android:visibility="visible"
                 android:fontFamily="monospace" />
         </FrameLayout>
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/addBtn"
-            android:layout_width="230dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginBottom="90dp"
-            android:text="Add City"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:cornerRadius="28dp"
-            app:backgroundTint="@color/selector"
-            app:icon="@drawable/home"
-            app:iconGravity="textEnd"/>
-
     </FrameLayout>
 
 </LinearLayout>
